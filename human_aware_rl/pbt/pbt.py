@@ -180,8 +180,14 @@ def my_config():
 
     ITER_PER_SELECTION = POPULATION_SIZE**2 # How many pairings and model training updates before the worst model is overwritten
 
-    RESAMPLE_PROB = 0.33
-    MUTATION_FACTORS = [0.75, 1.25]
+    
+    if EXAM_NAME[-3:] == "mut":
+        RESAMPLE_PROB = 0.45
+        MUTATION_FACTORS = [0.5, 0.75, 1.25, 1.5]
+    else:
+        MUTATION_FACTORS = [0.75, 1.25]
+        RESAMPLE_PROB = 0.33
+        
     HYPERPARAMS_TO_MUTATE = ["LAM", "CLIPPING", "LR", "STEPS_PER_UPDATE", "ENTROPY", "VF_COEF"]
 
     NUM_SELECTION_GAMES = 10 if not LOCAL_TESTING else 2
